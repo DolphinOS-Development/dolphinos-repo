@@ -24,15 +24,7 @@ jobs:
         echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
         mkdir buildworkdir
         chown -R builduser buildworkdir
-        chmod -R a+rw buildworkdir
         cd buildworkdir
-        whoami
-        echo -e "\n"
-        ls -lah
-        echo -e "\n"
-        ls -lah ..
-        echo -e "\n"
-        sudo -u builduser ls -lah
         sudo -u builduser git clone https://aur.archlinux.org/yay-bin.git
         cd yay-bin
         sudo -u builduser makepkg -si --noconfirm
