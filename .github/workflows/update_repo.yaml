@@ -1,6 +1,6 @@
 name: CI/CD for building, packaging 
 
-on: worflow_dispatch
+on: workflow_dispatch
 
 jobs:
   build_packages:
