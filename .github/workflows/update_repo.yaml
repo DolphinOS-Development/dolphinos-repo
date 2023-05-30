@@ -26,6 +26,10 @@ jobs:
         passwd -d builduser
         echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
         whoami
+        echo -e "\n"
+        ls -lah
+        echo -e "\n"
+        ls -lah ..
         git clone https://aur.archlinux.org/yay-bin.git
         cd yay-bin
         sudo -u builduser makepkg -si
