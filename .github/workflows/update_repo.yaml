@@ -22,7 +22,7 @@ jobs:
         passwd -d builduser
         echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
         sudo -u builduser mkdir buildworkdir
-        sudo -u chmod -R a+rw .
+        sudo -u builduser chmod -R a+rw buildworkdir
     - name: Update packages and install required dependencies for the job
       run: |
         cd buildworkdir
