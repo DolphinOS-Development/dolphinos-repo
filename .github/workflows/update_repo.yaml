@@ -21,7 +21,7 @@ jobs:
         echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
         git clone https://aur.archlinux.org/yay-bin.git
         cd yay-bin
-        sudo -u builder makepkg -si
+        sudo -u builuser makepkg -si
     - name: Clone PKGBUILDs repository
       run: |
         git clone https://github.com/DolphinOS-Development/DolphinOS-PKGBUILDs.git
