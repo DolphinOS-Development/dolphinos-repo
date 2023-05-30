@@ -1,4 +1,4 @@
-name: CI/CD for building a packaging and updating the DolphinOS repo
+name: CI/CD for building, packaging and updating the DolphinOS repo
 
 on: workflow_dispatch
 
