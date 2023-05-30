@@ -17,16 +17,17 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Define working dir for building packages
-      run: "mkdir buildworkdir"
+      run: | 
+        useradd builduser -m
+        passwd -d builduser
+        echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+        sudo -u builduser mkdir buildworkdir
+        sudo -u chmod -R a+rw .
     - name: Update packages and install required dependencies for the job
       run: |
         cd buildworkdir
         pacman -Syu --noconfirm --needed sudo git base-devel
-        useradd builduser -m
-        passwd -d builduser
-        echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
         whoami
-        chmod -R a+rw .
         echo -e "\n"
         ls -lah
         echo -e "\n"
