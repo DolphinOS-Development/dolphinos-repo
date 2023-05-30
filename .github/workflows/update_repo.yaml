@@ -1,0 +1,24 @@
+name: CI/CD for building, packaging 
+
+on: worflow_dispatch
+
+jobs:
+  build_packages:
+    name: Create and build Arch packages
+    runs-on: ubuntu-latest
+
+    container:
+      image: archlinux:latest
+      options: --privileged
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Update packages and install required dependencies for the job
+      run: |
+        pacman -Syu --noconfirm --needed git base-devel
+        git clone https://aur.archlinux.org/yay-bin.git
+        cd yay-bin
+        makepkg -si
+    - name: Clone PKGBUILDs repository
+      run: |
+        git clone https://github.com/DolphinOS-Development/DolphinOS-PKGBUILDs.git
