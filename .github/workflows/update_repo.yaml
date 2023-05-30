@@ -26,6 +26,7 @@ jobs:
         passwd -d builduser
         echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
         whoami
+        chmod -R a+rw .
         echo -e "\n"
         ls -lah
         echo -e "\n"
