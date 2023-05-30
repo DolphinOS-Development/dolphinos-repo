@@ -23,6 +23,7 @@ jobs:
         passwd -d builduser
         echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
         mkdir buildworkdir
+        chown -R builduser buildworkdir
         chmod -R a+rw buildworkdir
         cd buildworkdir
         whoami
