@@ -9,7 +9,7 @@ jobs:
 
     container:
       image: archlinux:latest
-      options: --privileged
+      #options: --privileged
 
     steps:
     - uses: actions/checkout@v2
