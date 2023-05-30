@@ -7,14 +7,20 @@ jobs:
     name: Create and build Arch packages
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     container:
       image: archlinux:latest
       options: --privileged
 
     steps:
     - uses: actions/checkout@v2
+    - name: Define working dir for building packages
+      run: "mkdir buildworkdir"
     - name: Update packages and install required dependencies for the job
       run: |
+        cd buildworkdir
         pacman -Syu --noconfirm --needed sudo git base-devel
         useradd builduser -m
         passwd -d builduser
