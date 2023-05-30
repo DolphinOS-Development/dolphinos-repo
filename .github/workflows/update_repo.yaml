@@ -35,7 +35,7 @@ jobs:
         sudo -u builduser ls -lah
         sudo -u builduser git clone https://aur.archlinux.org/yay-bin.git
         cd yay-bin
-        sudo -u builduser makepkg -si
+        sudo -u builduser makepkg -si --noconfirm
     - name: Clone PKGBUILDs repository
       run: |
         git clone https://github.com/DolphinOS-Development/DolphinOS-PKGBUILDs.git
