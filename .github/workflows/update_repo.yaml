@@ -35,7 +35,8 @@ jobs:
     - name: Build packages
       run: |
         cd buildworkdir/DolphinOS-PKGBUILDs
-        for dir in */
+        dirs=($(find * -maxdepth 0 -type d))
+        for dir in "${dirs[@]}"
         do
           cd $dir
           sudo -u builduser yay --noconfirm -B .
