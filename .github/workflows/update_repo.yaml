@@ -49,32 +49,6 @@ jobs:
     - name: Clean buildworkdir
       run: |
         rm -rf buildworkdir
-    - name: Commit changes and push packages to repo
-      run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "Updated packages"
-          git push
-  
-  update_repo:
-    name: Updates the distribution repository
-    needs: build_packages
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
-    container:
-      image: archlinux:latest
-      options: --privileged
-
-    steps:
-    - name: Update packages and install required dependencies for the job
-      run: |
-        pacman -Syu --noconfirm --needed sudo git base-devel
-    - uses: actions/checkout@v3
     - name: Adds packages to the database
       run: |
         repo-add x86_64/dolphinos-repo.db.tar.gz x86_64/*.pkg.tar.zst
