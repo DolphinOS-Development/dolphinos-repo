@@ -36,7 +36,7 @@ jobs:
         sudo -u builduser git clone https://github.com/DolphinOS-Development/DolphinOS-PKGBUILDs.git
     - name: Build packages
       run: |
-        mkdir -p x86_64
+        rm -rf x86_64/*.pkg.tar.zst
         cd buildworkdir/DolphinOS-PKGBUILDs
         dirs=($(find * -maxdepth 0 -type d))
         for dir in "${dirs[@]}"
