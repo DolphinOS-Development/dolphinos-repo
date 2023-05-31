@@ -60,6 +60,7 @@ jobs:
   
   update_repo:
     name: Updates the distribution repository
+    needs: build_packages
     runs-on: ubuntu-latest
 
     permissions:
