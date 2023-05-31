@@ -30,7 +30,13 @@ jobs:
         sudo -u builduser makepkg -si --noconfirm
     - name: Clone PKGBUILDs repository
       run: |
-        git clone https://github.com/DolphinOS-Development/DolphinOS-PKGBUILDs.git
+        cd buildworkdir
+        sudo -u builduser git clone https://github.com/DolphinOS-Development/DolphinOS-PKGBUILDs.git
     - name: Build packages
       run: |
-        pwd
+        cd buildworkdir
+        for dir in */
+        do
+          cd dir
+          sudo -u builduser yay --noconfirm -B .
+        done
