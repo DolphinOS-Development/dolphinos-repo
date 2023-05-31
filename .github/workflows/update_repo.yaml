@@ -78,3 +78,11 @@ jobs:
     - name: Adds packages to the database
       run: |
         repo-add x86_64/dolphinos-repo.db.tar.gz x86_64/*.pkg.tar.zst
+    - name: Commit changes and push packages to repo
+      run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Updated packages"
+          git push
