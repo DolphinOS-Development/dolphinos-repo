@@ -39,6 +39,7 @@ jobs:
         ls -lah
         for dir in "${dirs[@]}"
         do
-          cd "$dir"
+          cd "$PWD/$dir"
           sudo -u builduser yay --noconfirm -B .
+          cd ..
         done
