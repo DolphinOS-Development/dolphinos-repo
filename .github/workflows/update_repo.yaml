@@ -34,7 +34,7 @@ jobs:
         sudo -u builduser git clone https://github.com/DolphinOS-Development/DolphinOS-PKGBUILDs.git
     - name: Build packages
       run: |
-        cd buildworkdir
+        cd buildworkdir/DolphinOS-PKGBUILDs
         for dir in */
         do
           cd $dir
