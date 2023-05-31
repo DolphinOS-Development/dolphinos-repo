@@ -32,23 +32,25 @@ jobs:
       run: |
         cd buildworkdir
         sudo -u builduser git clone https://github.com/DolphinOS-Development/DolphinOS-PKGBUILDs.git
-    - name: Build packages
-      run: |
-        mkdir -p x86_64
-        cd buildworkdir/DolphinOS-PKGBUILDs
-        dirs=($(find * -maxdepth 0 -type d))
-        for dir in "${dirs[@]}"
-        do
-          cd "$(pwd)/$dir"
-          sudo -u builduser makepkg -s --noconfirm
-          cp -v *.pkg.tar.zst $GITHUB_WORKSPACE/x86_64
-          cd ..
-        done
+    # - name: Build packages
+    #   run: |
+    #     mkdir -p x86_64
+    #     cd buildworkdir/DolphinOS-PKGBUILDs
+    #     dirs=($(find * -maxdepth 0 -type d))
+    #     for dir in "${dirs[@]}"
+    #     do
+    #       cd "$(pwd)/$dir"
+    #       sudo -u builduser makepkg -s --noconfirm
+    #       cp -v *.pkg.tar.zst $GITHUB_WORKSPACE/x86_64
+    #       cd ..
+    #     done
     - name: Clean buildworkdir
       run: |
         rm -rf buildworkdir
     - name: Commit changes and push packages to repo
       run: |
+        pwd
+        ls -lah
         git config --global user.name 'JesusXD88'
         git config --global user.email 'JesusXD88@users.noreply.github.com'
         git commit -am "Updated packages"
