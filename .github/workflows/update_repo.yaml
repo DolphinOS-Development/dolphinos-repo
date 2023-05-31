@@ -36,10 +36,9 @@ jobs:
       run: |
         cd buildworkdir/DolphinOS-PKGBUILDs
         dirs=($(find * -maxdepth 0 -type d))
-        ls -lah
         for dir in "${dirs[@]}"
         do
           cd "$(pwd)/$dir"
-          sudo -u builduser yay --noconfirm -B .
+          sudo -u builduser makepkg -s --noconfirm
           cd ..
         done
