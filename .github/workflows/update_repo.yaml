@@ -57,3 +57,23 @@ jobs:
           git add .
           git commit -m "Updated packages"
           git push
+  
+  update_repo:
+    name: Updates the distribution repository
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    container:
+      image: archlinux:latest
+      options: --privileged
+
+    steps:
+    - name: Update packages and install required dependencies for the job
+      run: |
+        pacman -Syu --noconfirm --needed sudo git base-devel
+    - uses: actions/checkout@v3
+    - name: Adds packages to the database
+      run: |
+        repo-add x86_64/dolphinos-repo.db.tar.gz x86_64/*.pkg.tar.zst
