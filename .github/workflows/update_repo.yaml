@@ -40,5 +40,6 @@ jobs:
         do
           cd "$(pwd)/$dir"
           sudo -u builduser makepkg -s --noconfirm
+          cp *.pkg.tar.zst ${{ github.workspace }}/x86_64
           cd ..
         done
