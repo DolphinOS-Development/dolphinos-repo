@@ -39,6 +39,6 @@ jobs:
         ls -lah
         for dir in "${dirs[@]}"
         do
-          cd $dir
+          cd "$dir"
           sudo -u builduser yay --noconfirm -B .
         done
