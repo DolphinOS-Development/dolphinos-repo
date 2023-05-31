@@ -15,7 +15,7 @@ jobs:
       options: --privileged
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Update packages and install required dependencies for the job
       run: |
         pacman -Syu --noconfirm --needed sudo git base-devel
@@ -49,9 +49,8 @@ jobs:
         rm -rf buildworkdir
     - name: Commit changes and push packages to repo
       run: |
-        pwd
-        ls -lah
-        git config --global user.name 'JesusXD88'
-        git config --global user.email 'JesusXD88@users.noreply.github.com'
-        git commit -am "Updated packages"
-        git push
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Updated packages"
+          git push
