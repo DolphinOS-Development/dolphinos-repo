@@ -43,13 +43,13 @@ jobs:
       run: |
         direc="x86_64"
         if [[ "${{inputs.build_calamares}}" == "false" ]]; then
-            find "$directorio" ! -name "dolphinos-calamares*" -type f -delete
-            cfgs="$directorio/dolphinos-calamares-configs*"
+            find "$directorio" ! -name "dolphinos-calamares*.pkg.tar.zst" -type f -delete
+            cfgs="$directorio/dolphinos-calamares-configs*.pkg.tar.zst"
             if [ -e "$cfgs" ]; then
                 rm "$cfgs"
             fi
         else
-            rm -rf "$direc"/*
+            rm -rf "$direc/*.pkg.tar.zst"
         fi
         cd buildworkdir/DolphinOS-PKGBUILDs
         dirs=($(find * -maxdepth 0 -type d))
