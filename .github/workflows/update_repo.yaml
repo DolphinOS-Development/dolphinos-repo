@@ -44,7 +44,9 @@ jobs:
         direc="x86_64"
         if [[ "${{inputs.build_calamares}}" == "false" ]]; then
             keep=$(find "$direc" -type f -name "dolphinos-calamares*")
-            find "$direc" -type f ! -name "$(basename "$keep")" -exec rm {} +
+            echo $keep
+            echo "$(basename "$keep")"
+            find "$direc" -type f ! -name "$(basename "$keep")" -exec rm -v {} +
         else
             rm -rf "$direc"/*
         fi
