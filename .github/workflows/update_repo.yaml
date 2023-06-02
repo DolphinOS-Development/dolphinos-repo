@@ -43,10 +43,11 @@ jobs:
       run: |
         direc="x86_64"
         if [[ "${{inputs.build_calamares}}" == "false" ]]; then
-            keep=$(find "$direc" -type f -name "dolphinos-calamares*")
-            echo $keep
-            echo "$(basename "$keep")"
-            find "$direc" -type f ! -name "$(basename "$keep")" -exec rm -v {} +
+            find "$directorio" ! -name "dolphinos-calamares*" -type f -delete
+            cfgs="$directorio/dolphinos-calamares-configs*"
+            if [ -e "$cfgs" ]; then
+                rm "$cfgs"
+            fi
         else
             rm -rf "$direc"/*
         fi
