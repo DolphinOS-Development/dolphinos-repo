@@ -1,6 +1,11 @@
 name: CI/CD for building, packaging and updating the DolphinOS repo
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      build_calamares:
+        description: 'Build calamares'
+        type: boolean
 
 jobs:
   build_packages:
@@ -36,15 +41,27 @@ jobs:
         sudo -u builduser git clone https://github.com/DolphinOS-Development/DolphinOS-PKGBUILDs.git
     - name: Build packages
       run: |
-        rm -rf x86_64/*.pkg.tar.zst
+        direc="x86_64"
+        if [[ "${{inputs.build_calamares}}" == "false" ]]; then
+            find "$direc" ! -name "dolphinos-calamares*.pkg.tar.zst" -name "*.pkg.tar.zst" -type f -delete
+            cfgs="$direc/dolphinos-calamares-configs*.pkg.tar.zst"
+            if [ -e "$cfgs" ]; then
+                rm "$cfgs"
+            fi
+        else
+            rm -rf "$direc/*.pkg.tar.zst"
+        fi
         cd buildworkdir/DolphinOS-PKGBUILDs
         dirs=($(find * -maxdepth 0 -type d))
         for dir in "${dirs[@]}"
-        do
-          cd "$(pwd)/$dir"
-          sudo -u builduser makepkg -s --noconfirm
-          cp -v *.pkg.tar.zst $GITHUB_WORKSPACE/x86_64
-          cd ..
+        do 
+          if [[  "$dir" != "dolphinos-calamares" ]] || [[ "${{inputs.build_calamares}}" == "true" ]]
+          then
+            cd "$(pwd)/$dir"
+            sudo -u builduser makepkg -s --noconfirm
+            cp -v *.pkg.tar.zst $GITHUB_WORKSPACE/x86_64
+            cd ..
+          fi
         done
     - name: Clean buildworkdir
       run: |
@@ -54,11 +71,11 @@ jobs:
         repo-add x86_64/dolphinos-repo.db.tar.gz x86_64/*.pkg.tar.zst
     - name: Commit changes and push packages to repo
       run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config http.postBuffer 3221225472
-          git pull
-          git add .
-          git commit -m "Updated packages"
-          git push
+        git config --global --add safe.directory "$GITHUB_WORKSPACE"
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git config http.postBuffer 3221225472
+        git pull
+        git add .
+        git commit -m "Updated packages"
+        git push
