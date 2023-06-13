@@ -55,7 +55,7 @@ jobs:
         dirs=($(find * -maxdepth 0 -type d))
         for dir in "${dirs[@]}"
         do 
-          if [[  "$dir" != "dolphinos-calamares" ]] || [[  "$dir" != "dolphin-emu-git" ]] || [[ "${{inputs.build_calamares}}" == "true" ]]
+          if [[  "$dir" != "dolphinos-calamares" ]] || [[ "${{inputs.build_calamares}}" == "true" ]]
           then
             cd "$(pwd)/$dir"
             sudo -u builduser makepkg -s --noconfirm
