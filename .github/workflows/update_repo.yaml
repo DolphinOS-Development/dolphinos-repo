@@ -41,16 +41,16 @@ jobs:
         sudo -u builduser git clone https://github.com/DolphinOS-Development/DolphinOS-PKGBUILDs.git
     - name: Build packages
       run: |
-        direc="x86_64"
-        if [[ "${{inputs.build_calamares}}" == "false" ]]; then
-            find "$direc" ! -name "dolphinos-calamares*.pkg.tar.zst" -name "*.pkg.tar.zst" -type f -delete
-            cfgs="$direc/dolphinos-calamares-configs*.pkg.tar.zst"
-            if [ -e "$cfgs" ]; then
-                rm "$cfgs"
-            fi
-        else
-            rm -rf "$direc/*.pkg.tar.zst"
-        fi
+        # direc="x86_64"
+        # if [[ "${{inputs.build_calamares}}" == "false" ]]; then
+        #     find "$direc" ! -name "dolphinos-calamares*.pkg.tar.zst" -name "*.pkg.tar.zst" -type f -delete
+        #     cfgs="$direc/dolphinos-calamares-configs*.pkg.tar.zst"
+        #     if [ -e "$cfgs" ]; then
+        #         rm "$cfgs"
+        #     fi
+        # else
+        #     rm -rf "$direc/*.pkg.tar.zst"
+        # fi
         cd buildworkdir/DolphinOS-PKGBUILDs
         dirs=($(find * -maxdepth 0 -type d))
         for dir in "${dirs[@]}"
