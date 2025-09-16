@@ -10,7 +10,7 @@ on:
 jobs:
   build_packages:
     name: Create and build Arch packages
-    runs-on: ubuntu-latest
+    runs-on: garunner
 
     permissions:
       contents: write
