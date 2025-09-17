@@ -1,0 +1,12 @@
+name: Test Self-Hosted Runner
+
+on:
+  workflow_dispatch:  # permite lanzarlo a mano desde la pestaña Actions
+
+jobs:
+  test:
+    runs-on: [self-hosted]   # usa cualquier runner self-hosted disponible
+    steps:
+      - name: Say hello
+        run: echo "Hola! El runner funciona correctamente 🚀"
+
