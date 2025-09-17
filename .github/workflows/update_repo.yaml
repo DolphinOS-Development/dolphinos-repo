@@ -10,8 +10,7 @@ on:
 jobs:
   build_packages:
     name: Create and build Arch packages
-    runs-on:
-      group: DolphinOS-Dev
+    runs-on: self-hosted
 
     permissions:
       contents: write
