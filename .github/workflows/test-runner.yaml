@@ -5,7 +5,7 @@ on:
 
 jobs:
   test:
-    runs-on: [self-hosted]   # usa cualquier runner self-hosted disponible
+    runs-on: ubuntu-latest
     steps:
       - name: Say hello
         run: echo "Hola! El runner funciona correctamente 🚀"
