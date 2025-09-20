@@ -34,7 +34,8 @@ jobs:
           path: pkgs
 
     - name: Fix workspace permissions
-      run: sudo chown -R builduser:builduser /__w
+      working-directory: pkgs
+      run: sudo chown -R builduser:builduser .
 
     - name: Build packages
       working-directory: pkgs
