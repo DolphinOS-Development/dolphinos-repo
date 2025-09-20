@@ -33,6 +33,9 @@ jobs:
           repository: DolphinOS-Development/DolphinOS-PKGBUILDs
           path: pkgs
 
+    - name: Fix workspace permissions
+      run: sudo chown -R builduser:builduser /__w
+
     - name: Build packages
       working-directory: pkgs
       run: |
