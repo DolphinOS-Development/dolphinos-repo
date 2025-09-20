@@ -15,7 +15,8 @@ jobs:
   build_packages:
     name: Create and build Arch packages
     #runs-on: ["garunner", "self-hosted"]
-    runs-on: ubuntu-latest 
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted 
 
     container:
       image: ghcr.io/dolphinos-development/dolphinos-buildsystem-images/arch_repo__builder_image:latest
