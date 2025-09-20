@@ -19,7 +19,6 @@ jobs:
 
     container:
       image: ghcr.io/dolphinos-development/dolphinos-buildsystem-images/arch_repo__builder_image:latest
-      options: --privileged
 
     steps:
     - name: Checkout repo (dolphinos-repo)
