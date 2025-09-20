@@ -14,7 +14,7 @@ permissions:
 jobs:
   build_packages:
     name: Create and build Arch packages
-    runs-on: garunner
+    runs-on: ["garunner", "self-hosted"] 
 
     container:
       image: ghcr.io/dolphinos-development/dolphinos-buildsystem-images/arch_repo__builder_image:latest
