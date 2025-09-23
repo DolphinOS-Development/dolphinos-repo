@@ -49,7 +49,7 @@ jobs:
           echo "==> Building $pkg"
           cd "$pkg"
           sudo -u builduser BUILDDIR=/build makepkg -sf --noconfirm
-          mv /build/*.pkg.tar.zst $GITHUB_WORKSPACE/repo/x86_64/
+          mv ./*.pkg.tar.zst $GITHUB_WORKSPACE/repo/x86_64/
           rm -f /build/*.pkg.tar.zst
           cd -
         done
