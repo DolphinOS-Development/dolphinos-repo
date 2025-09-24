@@ -61,6 +61,8 @@ jobs:
     - name: Commit changes and push packages to repo
       working-directory: repo
       run: |
+        pwd
+        ls
         git config --global --add safe.directory "$GITHUB_WORKSPACE"
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
