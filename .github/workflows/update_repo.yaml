@@ -40,7 +40,7 @@ jobs:
 
     - name: Clean repo directory
       working-directory: repo
-      run: rm -rf x86_64/*.pkg.tar.zst
+      run: rm -rf x86_64/*
 
     - name: Build packages
       working-directory: pkgs
@@ -49,14 +49,14 @@ jobs:
           echo "==> Building $pkg"
           cd "$pkg"
           sudo -u builduser BUILDDIR=/build makepkg -sf --noconfirm
-          mv ./*.pkg.tar.zst $GITHUB_WORKSPACE/repo/x86_64/
+          sudo -u builduser mv ./*.pkg.tar.zst $GITHUB_WORKSPACE/repo/x86_64/
           rm -f /build/*.pkg.tar.zst
           cd -
         done
 
     - name: Update repo database
       working-directory: repo
-      run: repo-add x86_64/dolphinos-repo.db.tar.gz x86_64/*.pkg.tar.zst
+      run: sudo -u builduser repo-add x86_64/dolphinos-repo.db.tar.gz x86_64/*.pkg.tar.zst
     
     - name: Commit changes and push packages to repo
       working-directory: repo
