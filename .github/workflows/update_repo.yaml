@@ -36,7 +36,7 @@ jobs:
 
     - name: Fix workspace permissions
       working-directory: pkgs
-      run: sudo chown -R builduser:builduser .
+      run: sudo chown -R builduser:builduser $GITHUB_WORKSPACE
 
     - name: Clean repo directory
       working-directory: repo
